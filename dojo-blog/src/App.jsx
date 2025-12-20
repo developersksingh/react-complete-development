@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from "./Home";
 
 import Navbar from "./Navbar";
 
@@ -22,6 +23,7 @@ function App() {
         <p>{Math.random() * 100}</p>
         <p>Active User : {100 + 268}</p>
         <Navbar />
+        <Home/>
 
         
       </div>
