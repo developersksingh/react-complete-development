@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <div className="container">
-        <h1 className="text-success">{title} </h1>
+        <h1 className="text-success"  style={{color:"blue",padding:"4px", fontSize:"18x" }}>{title} </h1>
         <p>{"Hello ,World"}</p>
         <a href={link} title={link}>
           Visit Site
