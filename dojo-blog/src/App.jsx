@@ -22,6 +22,8 @@ function App() {
         <p>{Math.random() * 100}</p>
         <p>Active User : {100 + 268}</p>
         <Navbar />
+
+        
       </div>
     </>
   );
