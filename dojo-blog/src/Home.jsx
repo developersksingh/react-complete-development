@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CourseList from "./CourseList";
 
 function Home() {
-  const [courses] = useState([
+  const [courses, setCourses] = useState([
     { id: 1, name: "React JS", price: 2999 },
     { id: 2, name: "Node JS", price: 2599 },
     { id: 3, name: "Mongo DB", price: 1999 },
@@ -12,6 +12,10 @@ function Home() {
 
   const pageTitle = "Special Offer";
 
+  const handleDelete = (courseId) => {
+    setCourses(courses.filter(course => course.id !== courseId));
+  };
+
   return (
     <>
       <h1 className="text-center my-3">
@@ -20,7 +24,7 @@ function Home() {
 
       <div className="container">
         <div className="row">
-          {courses.map((course) => (
+          {courses.map(course => (
             <div key={course.id} className="col-md-4">
               <div className="card my-3 p-3 text-center">
                 <h3>{course.name}</h3>
@@ -35,8 +39,19 @@ function Home() {
 
         <hr />
 
-        <CourseList courses={courses} pageTitle={pageTitle} />
-        <CourseList courses={courses.filter(course => course.price > 1500)} pageTitle={pageTitle} />
+        {/* First Child */}
+        <CourseList
+          courses={courses}
+          pageTitle={pageTitle}
+          handleDelete={handleDelete}
+        />
+
+        {/* Second Child with filtered data */}
+        <CourseList
+          courses={courses.filter(course => course.price > 1500)}
+          pageTitle={pageTitle}
+          handleDelete={handleDelete}
+        />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-const CourseList = ({ courses, pageTitle }) => {
+const CourseList = ({ courses, pageTitle, handleDelete }) => {
   return (
     <>
       <h2 className="text-center my-4">
@@ -8,13 +8,21 @@ const CourseList = ({ courses, pageTitle }) => {
       </h2>
 
       <div className="row">
-        {courses.map((course) => (
+        {courses.map(course => (
           <div key={course.id} className="col-md-4">
             <div className="card my-3 p-3 text-center">
+              
+              <button
+                className="btn btn-sm btn-danger mb-2"
+                onClick={() => handleDelete(course.id)}
+              >
+                Delete
+              </button>
+
               <h3>{course.name}</h3>
               <h4>Price : ₹{course.price}</h4>
 
-              <span className="text-success fw-bold mb-2">
+              <span className="text-success fw-bold">
                 {pageTitle}
               </span>
 
