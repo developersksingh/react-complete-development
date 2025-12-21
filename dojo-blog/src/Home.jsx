@@ -1,26 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CourseList from "./CourseList";
 
 function Home() {
-  const [courses, setCourses] = useState([
-    { id: 1, name: "React JS", price: 2999 },
-    { id: 2, name: "Node JS", price: 2599 },
-    { id: 3, name: "Mongo DB", price: 1999 },
-    { id: 4, name: "Express JS", price: 1499 },
-    { id: 5, name: "JavaScript", price: 999 },
-  ]);
-
+  const [courses, setCourses] = useState([]);
   const pageTitle = "Special Offer";
 
   const handleDelete = (courseId) => {
-    setCourses(courses.filter(course => course.id !== courseId));
+    setCourses((prev) =>
+      prev.filter((course) => course.id !== courseId)
+    );
   };
 
   useEffect(() => {
-    console.log("Home Component Mounted");
-    return () => {
-      console.log("Home Component Unmounted");
-    };
+    fetch("https://dummyjson.com/users")
+      .then((response) => response.json())
+      .then((data) => {
+        // Convert users → courses
+
+      
+
+
+        const courseData = data.users.slice(0, 6).map((user) => ({
+          id: user.id,
+          age: user.age,
+          name: user.firstName + " " + user.lastName,
+          email : user.email,
+          mobile : user.phone,
+          image: user.image,
+          birthDate: user.birthDate,
+          gender: user.gender,
+
+        }));
+        setCourses(courseData);
+      })
+      .catch(() => {
+        // Fallback data
+        setCourses([
+          { id: 1, name: "Course A", email: "coursea@example.com", mobile: "9999999999" },
+          { id: 2, name: "Course B", email: "courseb@example.com", mobile: "8888888888" },
+          { id: 3, name: "Course C", email: "coursec@example.com", mobile: "7777777777" },
+          { id: 4, name: "Course D", email: "coursed@example.com", mobile: "6666666666" },
+          { id: 5, name: "Course E", email: "coursee@example.com", mobile: "5555555555" },
+          { id: 6, name: "Course F", email: "coursef@example.com", mobile: "4444444444" }
+        ]);
+      });
   }, []);
 
   return (
@@ -30,8 +53,9 @@ function Home() {
       </h1>
 
       <div className="container">
+        {/* Parent UI */}
         <div className="row">
-          {courses.map(course => (
+          {courses.map((course) => (
             <div key={course.id} className="col-md-4">
               <div className="card my-3 p-3 text-center">
                 <h3>{course.name}</h3>
@@ -46,17 +70,17 @@ function Home() {
 
         <hr />
 
-        {/* First Child */}
+        {/* Child 1 */}
         <CourseList
           courses={courses}
           pageTitle={pageTitle}
           handleDelete={handleDelete}
         />
 
-        {/* Second Child with filtered data */}
+        {/* Child 2 – Filtered */}
         <CourseList
-          courses={courses.filter(course => course.price > 1500)}
-          pageTitle={pageTitle}
+          courses={courses.filter((course) => course.price > 1500)}
+          pageTitle="Premium Courses"
           handleDelete={handleDelete}
         />
       </div>
