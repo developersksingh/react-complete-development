@@ -1,58 +1,74 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const Navbar = () => {
   const [pageName, setPageName] = useState("Web Development");
-  const [exprience, setExperience] = useState(16);
+  const [experience, setExperience] = useState(16);
+  const [activeMenu, setActiveMenu] = useState("Home");
 
-  const handlerClick = () => {
-    alert("Welcome My Dear Friends");
-  };
-
-  const handlerClickAgain = (a, b) => {
-    alert(`You have getting Score Like : ${a}, ${b}`);
-  };
-
-  const handlerClickEvent = (a, b, e) => {
-    alert(`You have getting Score Like : ${a}, ${b} : Event : ${e.type}`);
-  };
   const changePageName = () => {
     setPageName("Mobile Development");
     setExperience(20);
-  }
+  };
+
+  const handleMenuClick = (menu) => {
+    setActiveMenu(menu);
+  };
 
   return (
     <>
-      <h1>Current Choic is : {pageName}, Experiece :  {exprience}</h1>
-      <h1
-        style={{
-          color: "blue",
-          padding: "4px",
-          fontSize: "20px",
-        }}
-      >
-        Blog World
-      </h1>
-      <button className="btn btn-sm btn-success mr-4" onClick={handlerClick}>
-        Button 1
-      </button>
-      &nbsp;
-      <button
-        className="btn btn-sm btn-success my-5"
-        onClick={() => handlerClickAgain(101, 268)}
-      >
-        Button 2
-      </button>
-      &nbsp;
-      <button
-        className="btn btn-sm btn-success my-5"
-        onClick={(e) => handlerClickEvent(101, 268, e)}
-      >
-        Button 3
-      </button>
-      <button className="btn btn-sm btn-primary mx-4" onClick={changePageName}>
-        Change Page Name
-      </button>
+      {/* Navbar */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container">
+          <a className="navbar-brand fw-bold" href="#">
+            BlogWorld
+          </a>
+
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              {["Home", "About", "Services", "Contact"].map((menu) => (
+                <li className="nav-item" key={menu}>
+                  <button
+                    className={`nav-link btn btn-link ${
+                      activeMenu === menu ? "active" : ""
+                    }`}
+                    onClick={() => handleMenuClick(menu)}
+                  >
+                    {menu}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {/* Content */}
+      <div className="container mt-4">
+        <h4>
+          Current Choice: <strong>{pageName}</strong> | Experience:{" "}
+          <strong>{experience} years</strong>
+        </h4>
+
+        <p className="text-muted">
+          Active Menu: <strong>{activeMenu}</strong>
+        </p>
+
+        <button
+          className="btn btn-sm btn-primary mt-2"
+          onClick={changePageName}
+        >
+          Change Page Name
+        </button>
+      </div>
     </>
   );
 };
