@@ -1,6 +1,6 @@
 import React from "react";
 
-const CourseList = ({ courses, pageTitle, handleDelete }) => {
+const CourseList = ({ courses, pageTitle, handleDelete, errorMessage }) => {
   return (
     <>
       <h2 className="text-center my-4">
@@ -8,19 +8,24 @@ const CourseList = ({ courses, pageTitle, handleDelete }) => {
       </h2>
 
       <div className="row">
+        {/* Error Message */}
+        {errorMessage && (
+          <div className="col-12">
+            <div className="alert alert-danger">{errorMessage}</div>
+          </div>
+        )}
+
+        {/* Course Cards */}
         {courses.map((course) => (
           <div key={course.id} className="col-md-4">
-            <div className="card my-3 p-3 text-justify-content-left align-items-center">
-              
-              {/* Delete Button */}
+            <div className="card my-3 p-3 text-center align-items-center">
               <button
-                className="btn btn-sm btn-danger mb-2" title="Delete Record"
+                className="btn btn-sm btn-danger align-self-end"
                 onClick={() => handleDelete(course.id)}
               >
                 X
               </button>
 
-              {/* User Image */}
               {course.image && (
                 <img
                   src={course.image}
@@ -30,29 +35,14 @@ const CourseList = ({ courses, pageTitle, handleDelete }) => {
                 />
               )}
 
-              {/* User Details */}
               <h5>{course.name}</h5>
-              <p className="mb-1"><strong>Age:</strong> {course.age}</p>
-              <p className="mb-1"><strong>Email:</strong> {course.email}</p>
-              <p className="mb-1"><strong>Mobile:</strong> {course.mobile}</p>
-              <p className="mb-1"><strong>Gender:</strong> {course.gender}</p>
-              <p className="mb-2"><strong>DOB:</strong> {course.birthDate}</p>
+              <p><strong>Age:</strong> {course.age}</p>
+              <p><strong>Email:</strong> {course.email}</p>
+              <p><strong>Mobile:</strong> {course.mobile}</p>
+              <p><strong>Gender:</strong> {course.gender}</p>
+              <p><strong>DOB:</strong> {course.birthDate}</p>
 
-              {/* Course Price (Optional) */}
-              {course.price && (
-                <h6>Price : ₹{course.price}</h6>
-              )}
-
-              <span className="text-success fw-bold">
-                {pageTitle}
-              </span>
-
-               <button
-                className="btn btn-sm btn-danger mb-2" title="Delete Record"
-                onClick={() => handleDelete(course.id)}
-              >
-                X
-              </button>
+              <span className="text-success fw-bold">{pageTitle}</span>
             </div>
           </div>
         ))}

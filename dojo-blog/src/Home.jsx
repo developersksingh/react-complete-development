@@ -5,14 +5,21 @@ function Home() {
   const pageTitle = "Special Offer";
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleDelete = (courseId) => {
     setCourses((prev) => prev.filter((course) => course.id !== courseId));
   };
 
   useEffect(() => {
-    fetch("https://dummyjson.com/users")
-      .then((response) => response.json())
+    fetch("https://dummyjson.com/users") // wrong URL intentionally
+      .then((response) => {
+        console.log("API Response:", response);
+        if (!response.ok) {
+          throw new Error("API Error");
+        }
+        return response.json();
+      })
       .then((data) => {
         const courseData = data.users.slice(0, 6).map((user) => ({
           id: user.id,
@@ -22,17 +29,17 @@ function Home() {
           mobile: user.phone,
           image: user.image,
           gender: user.gender,
+          birthDate: user.birthDate,
         }));
 
         setCourses(courseData);
-        setLoading(false);
+        setErrorMessage(null);
       })
-      .catch(() => {
-        setCourses([
-          { id: 1, name: "Course A", age: 22, email: "coursea@example.com", mobile: "9999999999" },
-          { id: 2, name: "Course B", age: 25, email: "courseb@example.com", mobile: "8888888888" },
-          { id: 3, name: "Course C", age: 19, email: "coursec@example.com", mobile: "7777777777" },
-        ]);
+      .catch((error) => {
+        console.error(error);
+        setErrorMessage(`failed to fetch data: ${error.message}`);
+      })
+      .finally(() => {
         setLoading(false);
       });
   }, []);
@@ -44,22 +51,29 @@ function Home() {
       <div className="container">
         {/* Parent UI */}
         <div className="row">
-          {loading ? (
+          {loading && (
             <div className="col-12 text-center">
               <p>Loading...</p>
             </div>
-          ) : (
+          )}
+
+          {!loading && errorMessage && (
+            <div className="col-12">
+              <div className="alert alert-danger">{errorMessage}</div>
+            </div>
+          )}
+
+          {!loading &&
+            !errorMessage &&
             courses.map((course) => (
               <div key={course.id} className="col-md-4">
                 <div className="card my-3 p-3 text-center">
                   <h3>{course.name}</h3>
                   <p>Email: {course.email}</p>
                   <p>Mobile: {course.mobile}</p>
-                  <button className="btn btn-sm btn-primary">View</button>
                 </div>
               </div>
-            ))
-          )}
+            ))}
         </div>
 
         <hr />
@@ -69,6 +83,7 @@ function Home() {
           courses={courses}
           pageTitle={pageTitle}
           handleDelete={handleDelete}
+          errorMessage={errorMessage}
         />
 
         {/* Child 2 – Filtered */}
@@ -76,6 +91,7 @@ function Home() {
           courses={courses.filter((course) => course.age > 20)}
           pageTitle="Premium Courses"
           handleDelete={handleDelete}
+          errorMessage={errorMessage}
         />
       </div>
     </>
