@@ -36,6 +36,7 @@ function Home() {
         <hr />
 
         <CourseList courses={courses} pageTitle={pageTitle} />
+        <CourseList courses={courses.filter(course => course.price > 1500)} pageTitle={pageTitle} />
       </div>
     </>
   );
