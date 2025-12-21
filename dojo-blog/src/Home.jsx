@@ -79,7 +79,7 @@ function Home() {
 
         {/* Child 2 – Filtered */}
         <CourseList
-          courses={courses.filter((course) => course.price > 1500)}
+          courses={courses.filter((course) => course.age > 20)}
           pageTitle="Premium Courses"
           handleDelete={handleDelete}
         />

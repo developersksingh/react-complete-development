@@ -10,10 +10,15 @@ const CourseList = ({ courses, pageTitle, handleDelete }) => {
       <div className="row">
         {courses.map((course) => (
           <div key={course.id} className="col-md-4">
-            <div className="card my-3 p-3 text-center">
+            <div className="card my-3 p-3 text-justify-content-left align-items-center">
               
               {/* Delete Button */}
-             
+              <button
+                className="btn btn-sm btn-danger mb-2" title="Delete Record"
+                onClick={() => handleDelete(course.id)}
+              >
+                X
+              </button>
 
               {/* User Image */}
               {course.image && (
