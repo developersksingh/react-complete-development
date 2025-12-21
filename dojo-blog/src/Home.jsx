@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CourseList from "./CourseList";
 
 function Home() {
@@ -15,6 +15,13 @@ function Home() {
   const handleDelete = (courseId) => {
     setCourses(courses.filter(course => course.id !== courseId));
   };
+
+  useEffect(() => {
+    console.log("Home Component Mounted");
+    return () => {
+      console.log("Home Component Unmounted");
+    };
+  }, []);
 
   return (
     <>
