@@ -30,8 +30,7 @@ function Home() {
 
   return (
     <>
-      <h1 className="text-center my-3">Delete Working Example</h1>
-
+    
       <div className="container">
         {loading && <p className="text-center">Loading...</p>}
         {error && <div className="alert alert-danger">{error}</div>}
