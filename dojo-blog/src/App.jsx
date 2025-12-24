@@ -10,6 +10,7 @@ import Web from './Web'
 import Contact from './Contact'
 import { Routes, Route } from 'react-router-dom'
 import ProductGallery from './ProductGallery'
+import BlogDetails from './BlogDetails'
 function App () {
   const title = 'Welcome to the my new react blog.'
   const link = 'www.google.com'
@@ -30,6 +31,7 @@ function App () {
           <Route path='/about-us' element={<About />} />
           <Route path='/contact-us' element={<Contact />} />
           <Route path='/gallery' element={<ProductGallery />} />
+          <Route path='/blog-details/:id' element={<BlogDetails />} />
         </Routes>
       </div>
     </>
