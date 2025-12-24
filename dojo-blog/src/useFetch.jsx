@@ -2,21 +2,25 @@ import { useEffect, useState } from "react";
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!url) return;
+
     const controller = new AbortController();
 
     const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
-        setLoading(true);
         const response = await fetch(url, {
           signal: controller.signal,
         });
 
         if (!response.ok) {
-          throw new Error("Failed to fetch data");
+          throw new Error(`Error ${response.status}: Failed to fetch data`);
         }
 
         const result = await response.json();
@@ -31,6 +35,7 @@ const useFetch = (url) => {
     };
 
     fetchData();
+
     return () => controller.abort();
   }, [url]);
 
