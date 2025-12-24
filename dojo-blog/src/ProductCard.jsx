@@ -7,8 +7,8 @@ const ProductCard = ({ name, image }) => {
   if (!product) return <p>Image not found</p>;
 
   const imgStyle = {
-    width: "560px",
-    height: "400px",
+    width: "100px",
+    height: "100px",
     borderRadius: "12px",
     border: "2px solid red",
     objectFit: "cover"
@@ -23,7 +23,7 @@ const ProductCard = ({ name, image }) => {
         style={imgStyle}
       />
       <div className="card-body text-center">
-        <h5>{name}</h5>
+        {/* <h5>{name}</h5> */}
       </div>
     </div>
   );
