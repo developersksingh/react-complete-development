@@ -47,6 +47,38 @@
         "currency": "INR",
         "status": "Inactive"
       }
+    },
+    {
+      "userId": "U1004",
+      "fullName": "Rajesh Kumar",
+      "email": "rajesh.kumar@example.com",
+      "phone": "+91-8765432109",
+      "bankAccount": {
+        "accountNumber": "XXXXXX1234",
+        "accountType": "Savings",
+        "bankName": "Axis Bank",
+        "ifscCode": "UTIB0000567",
+        "branch": "Chennai T Nagar",
+        "balance": 234500.25,
+        "currency": "INR",
+        "status": "Active"
+      }
+    },
+    {
+      "userId": "U1005",
+      "fullName": "Neha Gupta",
+      "email": "neha.gupta@example.com",
+      "phone": "+91-7654321098",
+      "bankAccount": {
+        "accountNumber": "XXXXXX9876",
+        "accountType": "Current",
+        "bankName": "Kotak Mahindra Bank",
+        "ifscCode": "KKBK0000123",
+        "branch": "Pune FC Road",
+        "balance": 98765.00,
+        "currency": "INR",
+        "status": "Active"
+      }
     }
   ]
 }
