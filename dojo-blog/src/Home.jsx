@@ -4,7 +4,7 @@ import useFetch from "./useFetch";
 
 function Home() {
   const pageTitle = "Special Offer";
-  const { data, loading, error } = useFetch("https://dummyjson.com/users");
+  const { data, loading, error } = useFetch("./users.json");
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {

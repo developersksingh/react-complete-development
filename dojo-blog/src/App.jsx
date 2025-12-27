@@ -11,6 +11,7 @@ import Contact from './Contact'
 import { Routes, Route } from 'react-router-dom'
 import ProductGallery from './ProductGallery'
 import BlogDetails from './BlogDetails'
+import NotFound from './Notfound'
 function App () {
   const title = 'Welcome to the my new react blog.'
   const link = 'www.google.com'
@@ -32,6 +33,7 @@ function App () {
           <Route path='/contact-us' element={<Contact />} />
           <Route path='/gallery' element={<ProductGallery />} />
           <Route path='/blog-details/:id' element={<BlogDetails />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </>

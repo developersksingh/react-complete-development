@@ -8,7 +8,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 createRoot(document.getElementById("root")).render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+  <BrowserRouter
+    future={{
+      v7_startTransition: true,
+      v7_relativeSplatPath: true,
+    }}
+  >
+    <App />
+  </BrowserRouter>,
 );
