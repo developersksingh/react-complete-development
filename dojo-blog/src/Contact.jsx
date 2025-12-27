@@ -75,7 +75,7 @@ const Contact = () => {
     <>
       {/* Page Header */}
       <section className="bg-light py-4">
-        <div className="container text-center">
+        <div className="container-fluid text-center">
           <h1 className="fw-bold">Contact Us</h1>
           <p className="text-muted">We’d love to hear from you</p>
         </div>

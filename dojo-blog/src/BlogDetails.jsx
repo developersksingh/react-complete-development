@@ -21,7 +21,7 @@ const BlogDetails = () => {
   }
 
   return (
-    <div className="container mt-4">
+    <div className="container-fluid mt-4">
       <h2 className="text-center mb-4">Blog Details</h2>
 
       {data && (

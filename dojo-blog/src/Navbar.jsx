@@ -1,6 +1,14 @@
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const menuItems = [
+    { path: "/dashboard", label: "Dashboard" },
+    { path: "/", label: "Web" },
+    { path: "/home", label: "Home" },
+    { path: "/about-us", label: "About" },
+    { path: "/gallery", label: "Gallery" },
+    { path: "/contact-us", label: "Contact" },
+  ];
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -22,65 +30,18 @@ const Navbar = () => {
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-
-              >
-                Web
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink
-                to="/home"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-
-              >
-                Home
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink
-                to="/about-us"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-
-              >
-                About
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink
-                to="/gallery"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-
-              >
-                Gallery
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/contact-us"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-
-              >
-                Contact
-              </NavLink>
-            </li>
-
+            {menuItems.map((item, index) => (
+              <li className="nav-item" key={index}>
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

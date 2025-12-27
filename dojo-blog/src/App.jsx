@@ -12,6 +12,7 @@ import { Routes, Route } from 'react-router-dom'
 import ProductGallery from './ProductGallery'
 import BlogDetails from './BlogDetails'
 import NotFound from './Notfound'
+import Dashboard from './Dashboard'
 function App () {
   const title = 'Welcome to the my new react blog.'
   const link = 'www.google.com'
@@ -28,6 +29,7 @@ function App () {
         <Navbar />
         <Routes>
           <Route path='/' element={<Web />} />
+           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/home' element={<Home />} />
           <Route path='/about-us' element={<About />} />
           <Route path='/contact-us' element={<Contact />} />

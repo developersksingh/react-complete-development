@@ -31,7 +31,7 @@ function Home() {
   return (
     <>
     
-      <div className="container">
+      <div className="container-fluid mt-4">
         {loading && <p className="text-center">Loading...</p>}
         {error && <div className="alert alert-danger">{error}</div>}
 
